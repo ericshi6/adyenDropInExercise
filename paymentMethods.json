@@ -1,0 +1,15 @@
+
+curl https://checkout-test.adyen.com/v67/paymentMethods \
+-H "x-API-key: AQEyhmfxK4zJbBZDw0m/n3Q5qf3VaY9UCJ1+XWZe9W27jmlZiniYHPZ+YtXG9dYfNdwN0H8QwV1bDb7kfNy1WIxIIkxgBw==-uA2G0DS73SlmB4EHi/YNndhli7KlCMjXHbMmm8stboc=-djvcdM2gNHq9dSvC" \
+-H "content-type: application/json" \
+-d '{
+  "merchantAccount": "TestAccountNY",
+  "countryCode": "US",
+  "amount": {
+    "currency": "USD",
+    "value": 1000
+  },
+  "channel": "Web",
+  "shopperLocale": "en-US"
+}'
+
