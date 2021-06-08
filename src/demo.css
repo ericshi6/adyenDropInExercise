@@ -34,6 +34,10 @@ h1 {
     line-height: 38px;
 }
 
+td {
+    text-align: center;
+}
+  
 .sidebar .header {
     height: 60px;
     padding: 16px 24px;

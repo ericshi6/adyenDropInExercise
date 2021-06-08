@@ -117,3 +117,55 @@
        }
     ]
  }
+
+ {
+   "paymentMethods":[
+      {
+         "brands":[
+            "visa",
+            "mc",
+            "amex",
+            "discover",
+            "maestro",
+            "diners",
+            "jcb"
+         ],
+         "details":[
+            {
+               "key":"number",
+               "type":"text"
+            },
+            {
+               "key":"expiryMonth",
+               "type":"text"
+            },
+            {
+               "key":"expiryYear",
+               "type":"text"
+            },
+            {
+               "key":"cvc",
+               "type":"text"
+            },
+            {
+               "key":"holderName",
+               "optional":true,
+               "type":"text"
+            }
+         ],
+         "name":"Credit Card",
+         "type":"scheme"
+      },
+      {
+         "configuration":{
+            "intent":"authorize"
+         },
+         "name":"PayPal",
+         "type":"paypal"
+      },
+      {
+         "name":"AliPay",
+         "type":"alipay"
+      }
+   ]
+}
