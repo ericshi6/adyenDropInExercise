@@ -13,7 +13,8 @@ const paymentsDefaultConfig = {
     reference: 'Checkout Components sample code test',
     countryCode: 'US',
     channel: 'Web',
-    returnUrl: 'https://your-company.com/',
+    //returnUrl: 'http://localhost:3000/thanks.html',
+    returnUrl: 'https://boiling-atoll-49990.herokuapp.com/thanks.html',
     amount: {
         value: 1000,
         currency: 'USD'
