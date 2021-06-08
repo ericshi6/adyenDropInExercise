@@ -1,6 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+const dotenv = require("dotenv");
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
@@ -21,6 +22,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+// Enables environment variables by parsing the .env file and assigning it to process.env
+dotenv.config({
+  path: "./.env",
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
