@@ -35,7 +35,7 @@ $ npm start
 A Node.js server will start on `http://localhost:3000`.
 
 ### Deploying this example to Heroku
-(https://boiling-atoll-49990.herokuapp.com/)
+[See Eric's example](https://boiling-atoll-49990.herokuapp.com/).
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Adyen/adyen-components-js-sample-code)
 
