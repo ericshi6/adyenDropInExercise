@@ -9,7 +9,7 @@ function updateStateContainer(newState) {
 
 // Demo - Update request container
 function updateRequestContainer(response) {
-    const defaultResponseParams = { merchantAccount: 'TestAccountNY' };
+    const defaultResponseParams = { merchantAccount: 'EricShiHasAnIntWithYouTomECOM' };
     requestContainer.querySelector('pre').innerText = JSON.stringify(
         { ...defaultResponseParams, ...response },
         null,

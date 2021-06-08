@@ -1,22 +1,22 @@
 const paymentMethodsConfig = {
     shopperReference: 'Checkout Components sample code test',
     reference: 'Checkout Components sample code test',
-    countryCode: 'NL',
+    countryCode: 'US',
     amount: {
         value: 1000,
-        currency: 'EUR'
+        currency: 'USD'
     }
 };
 
 const paymentsDefaultConfig = {
     shopperReference: 'Checkout Components sample code test',
     reference: 'Checkout Components sample code test',
-    countryCode: 'NL',
+    countryCode: 'US',
     channel: 'Web',
     returnUrl: 'https://your-company.com/',
     amount: {
         value: 1000,
-        currency: 'EUR'
+        currency: 'USD'
     },
     lineItems: [
         {
