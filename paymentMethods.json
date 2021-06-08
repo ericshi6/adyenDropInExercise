@@ -13,3 +13,16 @@ curl https://checkout-test.adyen.com/v67/paymentMethods \
   "shopperLocale": "en-US"
 }'
 
+curl https://checkout-test.adyen.com/v67/paymentMethods \
+-H "x-API-key: AQE0hmfuXNWTK0Qc+iSVgG07lOySYIpeLJ1jVnFhz2yjp2leqsh72qMgvRMUBvvJE0MMr7je0hDBXVsNvuR83LVYjEgiTGAH-BOBcTKgRSjk/KtRWEhm0rsSy/sIK7RtOBYldOyfbVxA=-K.I3BPye8fduICVF" \
+-H "content-type: application/json" \
+-d '{
+  "merchantAccount": "EricShiHasAnIntWithYouTomECOM",
+  "countryCode": "US",
+  "amount": {
+    "currency": "USD",
+    "value": 1000
+  },
+  "channel": "Web",
+  "shopperLocale": "en-US"
+}'
