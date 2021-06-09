@@ -33,8 +33,16 @@ curl https://checkout-test.adyen.com/v1/originKeys \
 -H "Content-Type: application/json" \
 -d '{
    "originDomains":[
-      "https://www.your-company1.com",
-      "https://www.your-company2.com",
-      "https://www.your-company3.com"
+      "https://boiling-atoll-49990.herokuapp.com",
+      "http://localhost:3000"
    ]
 }'
+
+{
+  "originKeys": {
+      "https:\/\/boiling-atoll-49990.herokuapp.com": "pub.v2.8115650120946270.aHR0cHM6Ly9ib2lsaW5nLWF0b2xsLTQ5OTkwLmhlcm9rdWFwcC5jb20.vw9WkpuvIetWfiIKSsSRqhF9F89tRWZ1N5NHDEa15hA",
+      "http:\/\/localhost:3000": "pub.v2.8115650120946270.aHR0cDovL2xvY2FsaG9zdDozMDAw.KlMY38Xu1nZtfysivH8kCK8qfh06rj-LY73wXnlWLsc"
+  }
+}
+CLIENT_KEY=pub.v2.8115650120946270.aHR0cHM6Ly9ib2lsaW5nLWF0b2xsLTQ5OTkwLmhlcm9rdWFwcC5jb20.vw9WkpuvIetWfiIKSsSRqhF9F89tRWZ1N5NHDEa15hA
+CLIENT_KEY=pub.v2.8115650120946270.aHR0cDovL2xvY2FsaG9zdDozMDAw.KlMY38Xu1nZtfysivH8kCK8qfh06rj-LY73wXnlWLsc
