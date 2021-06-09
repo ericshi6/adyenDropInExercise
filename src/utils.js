@@ -1,3 +1,4 @@
+// Step 1: Get available payment methods
 const paymentMethodsConfig = {
     shopperReference: 'Checkout Components sample code test',
     reference: 'Checkout Components sample code test',
@@ -5,16 +6,19 @@ const paymentMethodsConfig = {
     amount: {
         value: 1000,
         currency: 'USD'
-    }
+    },
+    channel: 'Web',
+    merchantAccount: 'TestAccountNY'
 };
 
+//Step 3: Make a payment
 const paymentsDefaultConfig = {
     shopperReference: 'Checkout Components sample code test',
     reference: 'Checkout Components sample code test',
     countryCode: 'US',
     channel: 'Web',
     //returnUrl: 'http://localhost:3000/thanks.html',
-    returnUrl: 'https://boiling-atoll-49990.herokuapp.com/thanks.html',
+    returnUrl: 'https://boiling-atoll-49990.herokuapp.com/thanks.html',  //return url needs to be hardcoded since it is not relative to the redirect path
     amount: {
         value: 1000,
         currency: 'USD'
@@ -34,6 +38,7 @@ const paymentsDefaultConfig = {
 };
 
 // Generic POST Helper
+// Adyen endpoint was defined in config.js
 const httpPost = (endpoint, data) =>
     fetch(`/${endpoint}`, {
         method: 'POST',
@@ -44,7 +49,7 @@ const httpPost = (endpoint, data) =>
         body: JSON.stringify(data)
     }).then(response => response.json());
 
-// Get all available payment methods from the local server
+// Step 1: Get all available payment methods from the local server (posts to /paymentMethods)
 const getPaymentMethods = () =>
     httpPost('paymentMethods', paymentMethodsConfig)
         .then(response => {
@@ -54,10 +59,14 @@ const getPaymentMethods = () =>
         })
         .catch(console.error);
 
+// Step 3: Make a payment
 // Posts a new payment into the local server
 const makePayment = (paymentMethod, config = {}) => {
     const paymentsConfig = { ...paymentsDefaultConfig, ...config };
     const paymentRequest = { ...paymentsConfig, ...paymentMethod };
+    // payment method is STATE_DATA 
+    // spread operator combines the objects into one
+    // STATE_DATA is the paymentMethod field of an object passed from the front end or client app, deserialized from JSON to a data structure.
 
     updateRequestContainer(paymentRequest);
 
@@ -82,7 +91,7 @@ const getOriginKey = () =>
         })
         .catch(console.error);
 
-// Fetches a clientKey from the 
+// Fetches a clientKey from the local server
 const getClientKey = () =>
     httpPost('clientKeys')
         .then(response => {
@@ -91,3 +100,5 @@ const getClientKey = () =>
             return response.clientKey;
         })
         .catch(console.error);
+
+// I should have switched the function and the .env to getOriginKey / originKey

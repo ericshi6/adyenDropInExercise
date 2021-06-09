@@ -1,25 +1,16 @@
 //See documentation for directions 
 //https://docs.adyen.com/online-payments/drop-in-web/
 
-// Step 1: Get available payment methods
-
-// 0. Get clientKey - Make an API call to obtain the origin key with the provided API key
+// Get clientKey - Make an API call to obtain the origin key with the provided API key
 // https://docs.adyen.com/user-management/how-to-get-an-origin-key#generate-multiple-origin-keys
 
-
-
-
 getClientKey().then(clientKey => {
-    getPaymentMethods().then(paymentMethodsResponse => {
-      //final results
-      const showFinalResult = (res) =>{
-          if (res.resultCode == 'Authorised') {
-            dropin.setStatus('success', { message: 'Payment successful!' });
-          } else if (res.resultCode == 'Refused') {
-            dropin.setStatus('error', { message: 'Something went wrong.'});
-          }
-        }
-        //Create a configuration object
+  // Step 1: Get available payment methods
+    getPaymentMethods().then(paymentMethodsResponse => { //defined in utils.js
+
+        //Step 2: Add Drop-in to your payments form
+        //Step 2-1,2,3: add js, css, and DOM object to index.html
+        //Step 2-4: Create a configuration object
         const configuration = {
             environment: 'test',
             clientKey: clientKey, // Mandatory. clientKey from Customer Area. Web Drop-in versions before 3.10.1 use originKey instead of clientKey.
@@ -33,7 +24,10 @@ getClientKey().then(clientKey => {
                 // state.isValid;
                 // Global configuration for onSubmit
                 // Your function calling your server to make the `/payments` request
-                makePayment(state.data)
+                
+                //Step 2-6: Pass the state.data to your server.
+                //Step 3: Make a payment
+                makePayment(state.data) // defined in utils.js
                 .then(response => {
                     if (response.action) {
                       // Drop-in handles the action object from the /payments response
@@ -77,11 +71,9 @@ getClientKey().then(clientKey => {
                 }
               }
         }
-        // 1. Create an instance of AdyenCheckout
-        // Use the configuration object to create an instance of AdyenCheckout. Then use the returned value to create and mount the instance of Drop-in. 
+        // Step 2-5: Use the configuration object to create an instance of AdyenCheckout. Then use the returned value to create and mount the instance of Drop-in. 
         const checkout = new AdyenCheckout(configuration);
-
-        // 2. Create and mount the Component
+        // Create and mount the Component
         const dropin = checkout
             .create('dropin', {
                 // Events
@@ -90,6 +82,14 @@ getClientKey().then(clientKey => {
                 }
             })
             .mount('#dropin-container');
+      // Step 6: Present the payment result 
+      const showFinalResult = (res) =>{
+        if (res.resultCode == 'Authorised') {
+          dropin.setStatus('success', { message: 'Payment successful!' });
+        } else if (res.resultCode == 'Refused') {
+          dropin.setStatus('error', { message: 'Something went wrong.'});
+        }
+      }
 
     });
 });
