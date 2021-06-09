@@ -6,8 +6,19 @@
 // 0. Get clientKey - Make an API call to obtain the origin key with the provided API key
 // https://docs.adyen.com/user-management/how-to-get-an-origin-key#generate-multiple-origin-keys
 
+
+
+
 getClientKey().then(clientKey => {
     getPaymentMethods().then(paymentMethodsResponse => {
+      //final results
+      const showFinalResult = (res) =>{
+          if (res.resultCode == 'Authorised') {
+            dropin.setStatus('success', { message: 'Payment successful!' });
+          } else if (res.resultCode == 'Refused') {
+            dropin.setStatus('error', { message: 'Something went wrong.'});
+          }
+        }
         //Create a configuration object
         const configuration = {
             environment: 'test',
@@ -29,8 +40,8 @@ getClientKey().then(clientKey => {
                       dropin.handleAction(response.action);
                     } else {
                       // Your function to show the final result to the shopper
-                      //showFinalResult(response);
-                      dropin.setStatus('success', { message: 'Payment successful!' });
+                      showFinalResult(response);
+                      console.log(response);
 
                     }
                   })
@@ -47,9 +58,8 @@ getClientKey().then(clientKey => {
                       dropin.handleAction(response.action);
                     } else {
                       // Your function to show the final result to the shopper
-                      //showFinalResult(response);
-                      dropin.setStatus('success', { message: 'Payment successful!' });
-
+                      showFinalResult(response);
+                      console.log(response);
                     }
                   })
                   .catch(error => {
@@ -80,5 +90,7 @@ getClientKey().then(clientKey => {
                 }
             })
             .mount('#dropin-container');
+
     });
 });
+
