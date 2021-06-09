@@ -29,7 +29,9 @@ getClientKey().then(clientKey => {
                       dropin.handleAction(response.action);
                     } else {
                       // Your function to show the final result to the shopper
-                      showFinalResult(response);
+                      //showFinalResult(response);
+                      dropin.setStatus('success', { message: 'Payment successful!' });
+
                     }
                   })
                   .catch(error => {
@@ -45,7 +47,9 @@ getClientKey().then(clientKey => {
                       dropin.handleAction(response.action);
                     } else {
                       // Your function to show the final result to the shopper
-                      showFinalResult(response);
+                      //showFinalResult(response);
+                      dropin.setStatus('success', { message: 'Payment successful!' });
+
                     }
                   })
                   .catch(error => {
